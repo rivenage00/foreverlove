@@ -18,13 +18,6 @@ const PasswordScreen = ({
   const [showPassword, setShowPassword] = useState(false);
   const correctPassword = "ILOVEYOU";
 
-  const encryptPassword = (pass: string) => {
-    return pass
-      .split("")
-      .map(() => "*")
-      .join("");
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password.toUpperCase() === correctPassword) {
@@ -44,12 +37,12 @@ const PasswordScreen = ({
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="relative bg-gradient-to-br from-[#8D53AE] to-[#801E5A] p-12 rounded-xl shadow-xl w-full max-w-2xl mx-auto"
+        className="relative bg-gradient-to-br from-[#8D53AE] to-[#801E5A] p-4 sm:p-8 rounded-xl shadow-xl w-full max-w-2xl mx-auto"
       >
         <motion.div
-          className="absolute -top-12 left-1/2 transform -translate-x-1/2"
+          className="absolute -top-8 left-1/2 transform -translate-x-1/2"
           animate={{
-            y: [0, -10, 0],
+            y: [0, -5, 0],
             scale: [1, 1.1, 1],
           }}
           transition={{
@@ -58,9 +51,12 @@ const PasswordScreen = ({
             ease: "easeInOut",
           }}
         >
-          <Heart className="w-24 h-24 text-pink-400" fill="#EC4899" />
+          <Heart
+            className="w-16 h-16 sm:w-20 sm:h-20 text-pink-400"
+            fill="#EC4899"
+          />
           <motion.div
-            className="absolute inset-0 flex items-center justify-center text-white font-bold text-xl"
+            className="absolute inset-0 flex items-center justify-center text-white font-bold text-lg"
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
@@ -68,10 +64,10 @@ const PasswordScreen = ({
           </motion.div>
         </motion.div>
 
-        <form onSubmit={handleSubmit} className="space-y-8 mt-12">
-          <div className="relative space-y-4">
-            <div className="flex items-center justify-center gap-4">
-              <div className="flex flex-wrap sm:flex-nowrap justify-center gap-2">
+        <form onSubmit={handleSubmit} className="space-y-4 mt-10 sm:mt-12">
+          <div className="relative">
+            <div className="flex items-center justify-center gap-2 sm:gap-4">
+              <div className="grid grid-cols-8 gap-1.5 xs:gap-2 sm:gap-3">
                 {Array.from({ length: 8 }).map((_, i) => (
                   <motion.div
                     key={i}
@@ -80,7 +76,7 @@ const PasswordScreen = ({
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-[40px] h-[40px] sm:w-12 sm:h-12 border-2 border-pink-400 rounded-lg flex items-center justify-center text-white text-xl sm:text-2xl font-medium bg-pink-500/20 relative overflow-hidden cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.5)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.7)]"
+                    className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 border-2 border-pink-400 rounded-lg flex items-center justify-center text-white text-sm xs:text-base sm:text-xl font-medium bg-pink-500/20 relative overflow-hidden cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.5)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.7)]"
                     style={{ backdropFilter: "blur(8px)" }}
                     onClick={() => {
                       const element = document.getElementById("hidden-input");
@@ -103,9 +99,9 @@ const PasswordScreen = ({
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-pink-300 hover:text-pink-200 transition-colors"
+                className="text-pink-300 hover:text-pink-200 transition-colors ml-1 sm:ml-2"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
             <input
@@ -123,7 +119,7 @@ const PasswordScreen = ({
             type="submit"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full p-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-lg font-bold hover:opacity-90 transition-opacity"
+            className="w-full p-2 sm:p-2.5 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-lg font-bold hover:opacity-90 transition-opacity mt-4"
           >
             Submit
           </motion.button>
